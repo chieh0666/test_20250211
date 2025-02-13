@@ -9,16 +9,16 @@
 
 <h1>{{ $announcement }}</h1>
 
-{{-- @include('component.social-button') --}}
+@include('component.errors')
 
 <form action="/user/auth/signup" method="post">
   @csrf
-  Email： <input type="text" name="email" placeholder="Email" ><br/>
-  密碼： <input type="password" name="password" placeholder="密碼" ><br/>
-  暱稱： <input type="text" name="nickname" placeholder="暱稱" ><br/>
+  Email： <input type="text" name="email" placeholder="Email" value="{{ old('email') }}"><br/>
+  密碼： <input type="password" name="password" placeholder="密碼"><br/>
+  暱稱： <input type="text" name="nickname" placeholder="暱稱" value="{{ old('nickname') }}"><br/>
   使用者類型：<br/>
-  <input type="radio" name="userType" value="user">一般使用者
-  <input type="radio" name="userType" value="admin">管理員<br/>
+  <input type="radio" name="type" value="G" @if(old('userType') == 'G') checked @endif>一般使用者
+  <input type="radio" name="type" value="A" @if(old('userType') == 'A') checked @endif>管理員<br/>
   <input type="submit" value="註冊"><br/>
 </form>
 
