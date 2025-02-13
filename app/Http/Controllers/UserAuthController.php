@@ -27,6 +27,10 @@ class UserAuthController extends Controller
             return redirect('/user/auth/signup')
                     ->withErrors(['暱稱不得為空','請重新輸入'])
                     ->withInput();
+        } else if ($input['password'] && User::where('email', $input['email'])->count() > 0) {
+            return redirect('/user/auth/signup')
+                    ->withErrors(['密碼已被註冊','請重新輸入'])
+                    ->withInput();
         } else {
             $input['password'] = Hash::make($input['password']);
             User::create($input);
