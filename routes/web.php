@@ -2,14 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', function () {
-    return 123;
-});
-
 Route::group(['prefix' => 'user'], function(){
     Route::get(
         'search/{user_id}',
