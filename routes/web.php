@@ -10,9 +10,6 @@ Route::get('/', function () {
     return 123;
 });
 
-// Route::get('/user/auth/login', 'App\Http\Controllers\UserAuthController@Login');
-// Route::get('/user/search/{user_id}', 'App\Http\Controllers\UserAuthController@Search');
-
 Route::group(['prefix' => 'user'], function(){
     Route::get(
         'search/{user_id}',
@@ -20,11 +17,11 @@ Route::group(['prefix' => 'user'], function(){
     );
     Route::group(['prefix' => 'auth'], function(){
         Route::get(
-            'login',
-            'App\Http\Controllers\UserAuthController@Login'
-        );
-        Route::get(
             'signup',
-            'App\Http\Controllers\UserAuthController@SignUp');
+            'App\Http\Controllers\UserAuthController@SignUpPage'
+        );
+        Route::post(
+            'signup',
+            'App\Http\Controllers\UserAuthController@SignUpProcess');
         });
 });
