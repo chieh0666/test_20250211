@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Hash;
 use App\Shop\Entity\User;
+use Illuminate\Support\Facades\Mail;
 class UserAuthController extends Controller
 {
     public function SignUpPage()
@@ -34,6 +35,16 @@ class UserAuthController extends Controller
         } else {
             $input['password'] = Hash::make($input['password']);
             User::create($input);
+            print_r($input);
+
+            Mail::send('email.signUpEmailNotification',
+                        ['nickname' => $input['nickname']],
+                        function($message) use ($input) {
+                            $message->to($input['email'], $input['nickname'])
+                            ->from('gtaped14876@gmail.com')
+                            ->subject('Laravel 8 Mail Test');
+            });
+    
         }
     }
 }
