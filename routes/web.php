@@ -14,6 +14,26 @@ Route::group(['prefix' => 'user'], function(){
         );
         Route::post(
             'signup',
-            'App\Http\Controllers\UserAuthController@SignUpProcess');
-        });
+            'App\Http\Controllers\UserAuthController@SignUpProcess'
+        );
+        Route::get(
+            'signin',
+            'App\Http\Controllers\UserAuthController@SigninPage'
+        );
+        Route::post(
+            'signin',
+            'App\Http\Controllers\UserAuthController@SigninProcess'
+        );
+        Route::get(
+            'signout',
+            'App\Http\Controllers\UserAuthController@SigninOut'
+        );
+    });
+});
+Route::group(['prefix' => 'merchandise'], function(){
+    Route::get(
+        'create',
+        'App\Http\Controllers\MerchandiseController@MerchandiseCreateProcess'
+    );
+    
 });
